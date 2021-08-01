@@ -27,16 +27,14 @@
             <!-- 如果价格超过100，就有red这个类 -->
             <td :class="{ red: obj.price > 100 }">{{ obj.price }}</td>
             <td>{{ obj.time }}</td>
-            <td><a href="#">删除</a></td>
+            <td><a href="#" @click="delFn(obj.id)">删除</a></td>
           </tr>
         </tbody>
-        <!-- 
-        <tfoot >
+        <tfoot v-show="list.length === 0">
           <tr>
             <td colspan="5" style="text-align: center">暂无数据</td>
           </tr>
         </tfoot>
-            -->
       </table>
 
       <!-- 添加资产 -->
@@ -89,14 +87,20 @@ export default {
       if (this.name.trim().length === 0 || this.price === 0) {
         return alert('不能为空');
       }
+      const id =
+        this.list.length > 0 ? this.list[this.list.length - 1].id + 1 : 100;
       this.list.push({
-        id: this.list[this.list.length - 1].id + 1,
+        id,
         name: this.name,
         price: this.price,
         time: new Date()
       });
       this.name = '';
       this.price = 0;
+    },
+    delFn(id) {
+      const index = this.list.findIndex((obj) => obj.id === id);
+      this.list.splice(index, 1);
     }
   }
 };
