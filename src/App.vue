@@ -26,7 +26,7 @@
 
             <!-- 如果价格超过100，就有red这个类 -->
             <td :class="{ red: obj.price > 100 }">{{ obj.price }}</td>
-            <td>{{ obj.time }}</td>
+            <td>{{ obj.time | formatDate }}</td>
             <td><a href="#" @click="delFn(obj.id)">删除</a></td>
           </tr>
         </tbody>
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
   data() {
     return {
@@ -101,6 +102,11 @@ export default {
     delFn(id) {
       const index = this.list.findIndex((obj) => obj.id === id);
       this.list.splice(index, 1);
+    }
+  },
+  filters: {
+    formatDate(val) {
+      return moment(val).format('YYYY-MM-DD');
     }
   }
 };
