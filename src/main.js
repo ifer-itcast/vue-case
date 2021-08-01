@@ -1,19 +1,9 @@
-import $ from 'jquery';
-$('#myUL>li:odd').css('color', 'red');
-$('#myUL>li:even').css('color', 'green');
+import Vue from 'vue';
+import App from './components/App.vue';
 
-import './css/index.css';
-import './less/index.less';
-
-import imgObj from './assets/ll.gif';
-const theImg = document.createElement('img');
-theImg.src = imgObj;
-document.body.appendChild(theImg);
-
-import './assets/fonts/iconfont.css';
-const theI = document.createElement('i');
-theI.className = 'iconfont icon-qq';
-document.body.appendChild(theI);
-
-const fn = () => console.log('箭头函数');
-console.log(fn);
+const vm = new Vue({
+  // 指定 vm 要控制的页面区域
+  el: '#app',
+  // 通过 render 函数，把指定的组件渲染到指定区域中
+  render: h => h(App)
+})
