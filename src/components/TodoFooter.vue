@@ -29,7 +29,7 @@
         >
       </li>
     </ul>
-    <button class="clear-completed">清除已完成</button>
+    <button class="clear-completed" @click="clearFn">清除已完成</button>
   </footer>
 </template>
 
@@ -49,6 +49,9 @@ export default {
   methods: {
     fn() {
       this.$emit('changeType', this.isSel);
+    },
+    clearFn() {
+      this.$emit('clear');
     }
   }
 };
