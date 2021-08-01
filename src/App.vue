@@ -2,7 +2,7 @@
   <div>
     <span>全选:</span>
     <input type="checkbox" v-model="isAll" />
-    <button>反选</button>
+    <button @click="btn">反选</button>
     <ul>
       <li v-for="(obj, index) in arr" :key="index">
         <input type="checkbox" v-model="obj.c" />
@@ -47,6 +47,11 @@ export default {
       get() {
         return this.arr.every((obj) => obj.c === true);
       }
+    }
+  },
+  methods: {
+    btn() {
+      this.arr.forEach((obj) => (obj.c = !obj.c));
     }
   }
 };
