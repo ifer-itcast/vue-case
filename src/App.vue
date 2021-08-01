@@ -1,17 +1,20 @@
 <template>
   <div>
+    <!-- 目标: 子传父 -->
+    <!-- 1. 父组件, @自定义事件名="父methods函数" -->
     <MyProduct
-      v-for="obj in list"
+      v-for="(obj, ind) in list"
       :key="obj.id"
       :title="obj.proname"
       :price="obj.proprice"
       :intro="obj.info"
+      :index="ind"
+      @subprice="fn"
     ></MyProduct>
   </div>
 </template>
 
 <script>
-// 目标: 循环使用组件-分别传入数据
 import MyProduct from './components/MyProduct';
 export default {
   data() {
@@ -38,10 +41,18 @@ export default {
       ]
     };
   },
-  // 3. 注册组件
   components: {
-    // MyProduct: MyProduct
     MyProduct
+  },
+  methods: {
+    fn(inde, price) {
+      this.list[inde].proprice > 1 &&
+        (this.list[inde].proprice = (this.list[inde].proprice - price).toFixed(
+          2
+        ));
+    }
   }
 };
 </script>
+
+<style></style>

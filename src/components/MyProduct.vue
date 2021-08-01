@@ -3,13 +3,19 @@
     <h3>标题: {{ title }}</h3>
     <p>价格: {{ price }}元</p>
     <p>{{ intro }}</p>
+    <button @click="subFn">宝刀-砍1元</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['title', 'price', 'intro']
-}
+  props: ['index', 'title', 'price', 'intro'],
+  methods: {
+    subFn() {
+      this.$emit('subprice', this.index, 1); // 子向父
+    }
+  }
+};
 </script>
 
 <style>
