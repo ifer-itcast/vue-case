@@ -1,7 +1,7 @@
 <template>
   <section class="todoapp">
     <!-- 除了驼峰, 还可以使用-转换链接 -->
-    <TodoHeader @create="createFn"></TodoHeader>
+    <TodoHeader :arr="list" @create="createFn"></TodoHeader>
     <TodoMain :arr="showArr" @del="deleteFn"></TodoMain>
     <TodoFooter
       :farr="showArr"
