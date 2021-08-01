@@ -8,11 +8,15 @@
 </template>
 
 <script>
+// !#3
+import eventBus from '../EventBus';
 export default {
   props: ['index', 'title', 'price', 'intro'],
   methods: {
     subFn() {
       this.$emit('subprice', this.index, 1); // 子向父
+      // !#4
+      eventBus.$emit('send', this.index, 1); // 跨组件
     }
   }
 };
