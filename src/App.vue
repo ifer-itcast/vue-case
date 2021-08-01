@@ -1,22 +1,20 @@
 <template>
   <div>
-    <button @click="show = !show">销毁</button>
-    <hr>
-    <Life v-if="show"/>
+    <use-axios />
   </div>
 </template>
 
 <script>
-import Life from './components/Life.vue'
+import UseAxios from './components/UseAxios.vue';
 export default {
   name: 'App',
   data() {
     return {
       show: true
-    }
+    };
   },
   components: {
-    Life
+    UseAxios
   }
-}
+};
 </script>
