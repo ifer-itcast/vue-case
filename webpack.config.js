@@ -25,6 +25,13 @@ module.exports = {
         type: 'asset'
         // 小于 8kb，会把图片转成 base64，打包进 JS
         // 大于 8kb，打包进 dist 文件夹
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name].[hash:6][ext]'
+        }
       }
     ]
   }
