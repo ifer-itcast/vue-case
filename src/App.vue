@@ -37,8 +37,16 @@ export default {
     };
   },
   computed: {
-    isAll() {
+    /* isAll() {
       return this.arr.every((obj) => obj.c === true);
+    } */
+    isAll: {
+      set(val) {
+        this.arr.forEach((obj) => (obj.c = val));
+      },
+      get() {
+        return this.arr.every((obj) => obj.c === true);
+      }
     }
   }
 };
