@@ -32,6 +32,16 @@ module.exports = {
         generator: {
           filename: 'fonts/[name].[hash:6][ext]'
         }
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   }
