@@ -3,7 +3,7 @@
     <span class="todo-count"
       >剩余 <strong>{{ count }}</strong></span
     >
-    <ul class="filters">
+    <ul class="filters" @click="fn">
       <li>
         <a
           @click="isSel = 'all'"
@@ -45,6 +45,11 @@ export default {
     return {
       isSel: 'all'
     };
+  },
+  methods: {
+    fn() {
+      this.$emit('changeType', this.isSel);
+    }
   }
 };
 </script>
