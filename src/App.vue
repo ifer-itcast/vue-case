@@ -3,7 +3,7 @@
     <!-- 除了驼峰, 还可以使用-转换链接 -->
     <TodoHeader @create="createFn"></TodoHeader>
     <TodoMain :arr="list" @del="deleteFn"></TodoMain>
-    <TodoFooter></TodoFooter>
+    <TodoFooter :farr="list"></TodoFooter>
   </section>
 </template>
 
