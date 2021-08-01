@@ -28,11 +28,7 @@ export default {
   },
   data() {
     return {
-      list: [
-        { id: 100, name: '吃饭', isDone: true },
-        { id: 201, name: '睡觉', isDone: false },
-        { id: 103, name: '打豆豆', isDone: true }
-      ],
+      list: JSON.parse(localStorage.getItem('TODO') || '[]'),
       getSel: 'all'
     };
   },
@@ -69,6 +65,15 @@ export default {
       }
 
       return this.list;
+    }
+  },
+  watch: {
+    list: {
+      handler() {
+        localStorage.setItem('TODO', JSON.stringify(this.list));
+      },
+      // 改变数组中对象里面的数据时会发挥作用
+      deep: true
     }
   }
 };
