@@ -30,7 +30,8 @@ export default {
   computed: {
     isAll: {
       get() {
-        return this.arr.every((obj) => obj.isDone === true);
+        // 没有数据时，不要勾选【全选按钮】
+        return this.arr.length !== 0 && this.arr.every((obj) => obj.isDone === true);
       },
       set(checked) {
         this.arr.forEach((obj) => (obj.isDone = checked));
