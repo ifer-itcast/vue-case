@@ -1,22 +1,15 @@
 <template>
-  <div id="app">
-    <h3>案例：折叠面板</h3>
-    <div>
-      <div class="title">
-        <h4>芙蓉楼送辛渐</h4>
-        <!-- #1 -->
-        <span class="btn" @click="btn">
-          {{isShow ? '收起' : '展开'}}
-        </span>
-      </div>
-      <!-- #2 -->
-      <div class="container" v-show="isShow">
-        <p>寒雨连江夜入吴,</p>
-        <p>平明送客楚山孤。</p>
-        <p>洛阳亲友如相问，</p>
-        <p>一片冰心在玉壶。</p>
-      </div>
-    </div>
+  <div>
+    <ul>
+      <li v-for="item in arr">
+        {{item}}
+        <!-- 页面上直接输入的内容，Vue 内部并没有感知，对于 Vue 来说修改前后都是 <input type="text"/>，所以会复用 -->
+        <!-- <input type="text" /> -->
+        <!-- 下面直接通过 :value 进行绑定的则不一样，input 标签还是复用了，但 value 会更新 -->
+        <input type="text" :value="item" />
+      </li>
+    </ul>
+    <button @click="handleAdd">add</button>
   </div>
 </template>
 
@@ -24,50 +17,16 @@
 export default {
   data() {
     return {
-      isShow: true
-    }
+      arr: ['老大', '老二', '老三'],
+    };
   },
   methods: {
-    btn() {
-      this.isShow = !this.isShow;
+    handleAdd() {
+      this.arr.splice(1, 0, '新来的');
+      console.log(this.$vnode);
     }
   }
-}
+};
 </script>
 
-<style lang="less">
-body {
-  background-color: #ccc;
-  #app {
-    width: 400px;
-    margin: 20px auto;
-    background-color: #fff;
-    border: 4px solid blueviolet;
-    border-radius: 1em;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-    padding: 1em 2em 2em;
-    h3 {
-      text-align: center;
-    }
-    .title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid #ccc;
-      padding: 0 1em;
-    }
-    .title h4 {
-      line-height: 2;
-      margin: 0;
-    }
-    .container {
-      border: 1px solid #ccc;
-      padding: 0 1em;
-    }
-    .btn {
-      /* 鼠标改成手的形状 */
-      cursor: pointer;
-    }
-  }
-}
-</style>
+<style lang="less"></style>
