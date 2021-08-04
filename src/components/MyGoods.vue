@@ -2,8 +2,8 @@
   <div class="my-goods-item">
     <div class="left">
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="input" v-model="gObj.goods_state" />
-        <label class="custom-control-label" for="input">
+        <input type="checkbox" class="custom-control-input" :id="gObj.id" v-model="gObj.goods_state" />
+        <label class="custom-control-label" :for="gObj.id">
           <img
             :src="gObj.goods_img"
             alt=""
