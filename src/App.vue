@@ -1,47 +1,28 @@
 <template>
   <div>
-    <my-header title="购物车案例" />
-    <div class="main">
-      <my-goods v-for="obj in list" :key="obj.id" :gObj="obj" />
+    <p>
+      <button @click="comName = 'UserName'">账号密码填写</button>
+      <button @click="comName = 'UserInfo'">个人信息填写</button>
+    </p>
+    <div style="border: 1px solid red;">
+      <component :is="comName"></component>
     </div>
-    <my-footer @changeAll="allFn" :arr="list" />
   </div>
 </template>
 
 <script>
-import MyHeader from './components/MyHeader.vue';
-import MyGoods from './components/MyGoods.vue';
-import MyFooter from './components/MyFooter.vue';
+import UserName from './components/UserName.vue';
+import UserInfo from './components/UserInfo.vue';
 export default {
   name: 'App',
+  components: {
+    UserName,
+    UserInfo
+  },
   data() {
     return {
-      list: []
+      comName: 'UserName'
     };
-  },
-  components: {
-    MyHeader,
-    MyGoods,
-    MyFooter
-  },
-  created() {
-    this.$axios({
-      url: '/api/cart'
-    }).then((res) => {
-      this.list = res.data.list;
-    });
-  },
-  methods: {
-    allFn(bool) {
-      this.list.forEach((obj) => (obj.goods_state = bool));
-    }
   }
 };
 </script>
-
-<style scoped>
-.main {
-  padding-top: 45px;
-  padding-bottom: 50px;
-}
-</style>
