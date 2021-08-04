@@ -4,7 +4,7 @@
       class="tab-item"
       v-for="(obj, index) in arr"
       :key="index"
-      @click="btn(index)"
+      @click="btn(index, obj)"
       :class="{ current: index === selIndex }"
     >
       <!-- 图标 -->
@@ -38,8 +38,9 @@ export default {
     };
   },
   methods: {
-    btn(index) {
+    btn(index, obj) {
       this.selIndex = index;
+      this.$emit('changeCom', obj.componentName);
     }
   }
 };
