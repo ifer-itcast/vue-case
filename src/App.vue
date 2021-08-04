@@ -5,7 +5,9 @@
       <button @click="comName = 'UserInfo'">个人信息填写</button>
     </p>
     <div style="border: 1px solid red;">
-      <component :is="comName"></component>
+      <keep-alive>
+        <component :is="comName"></component>
+      </keep-alive>
     </div>
   </div>
 </template>

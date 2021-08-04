@@ -10,3 +10,14 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: 'UserName',
+  activated() {
+    console.log('UserName activated');
+  },
+  deactivated() {
+    console.log('UserName deactivated');
+  }
+};
+</script>
