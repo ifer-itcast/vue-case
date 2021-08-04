@@ -1,30 +1,35 @@
 <template>
-  <div>
-    <p>
-      <button @click="comName = 'UserName'">账号密码填写</button>
-      <button @click="comName = 'UserInfo'">个人信息填写</button>
-    </p>
-    <div style="border: 1px solid red;">
-      <keep-alive>
-        <component :is="comName"></component>
-      </keep-alive>
+  <div id="container">
+    <div id="app">
+      <h3>案例：折叠面板</h3>
+      <panel>
+        <img src="./assets/mm.gif" alt="">
+      </panel>
+      <panel>
+        <img src="./assets/a.jpg" alt="">
+      </panel>
+      <panel/>
     </div>
   </div>
 </template>
 
 <script>
-import UserName from './components/UserName.vue';
-import UserInfo from './components/UserInfo.vue';
+import Panel from './components/Panel.vue';
 export default {
   name: 'App',
   components: {
-    UserName,
-    UserInfo
-  },
-  data() {
-    return {
-      comName: 'UserName'
-    };
+    Panel
   }
 };
 </script>
+<style scoped>
+#app {
+  width: 400px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 4px solid blueviolet;
+  border-radius: 1em;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  padding: 1em 2em 2em;
+}
+</style>
