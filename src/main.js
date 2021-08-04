@@ -3,6 +3,7 @@ import App from './App.vue';
 import Find from '@/views/Find';
 import My from '@/views/My';
 import Part from '@/views/Part';
+import NotFound from '@/views/NotFound'
 
 // !#1
 import VueRouter from 'vue-router';
@@ -32,6 +33,10 @@ const routes = [
   {
     path: '/part/:username',
     component: Part
+  },
+  {
+    path: '*',
+    component: NotFound
   }
 ];
 // !#3
