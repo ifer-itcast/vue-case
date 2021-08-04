@@ -41,6 +41,7 @@ const routes = [
 ];
 // !#3
 const router = new VueRouter({
+  mode: 'history',
   routes
 });
 
