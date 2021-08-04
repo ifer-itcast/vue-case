@@ -1,6 +1,12 @@
 <template>
   <div class="my-tab-bar">
-    <div class="tab-item" v-for="(obj, index) in arr" :key="index">
+    <div
+      class="tab-item"
+      v-for="(obj, index) in arr"
+      :key="index"
+      @click="btn(index)"
+      :class="{ current: index === selIndex }"
+    >
       <!-- 图标 -->
       <span :class="obj.iconfont"></span>
       <!-- 文字 -->
@@ -24,6 +30,16 @@ export default {
           return false;
         }
       }
+    }
+  },
+  data() {
+    return {
+      selIndex: 0
+    };
+  },
+  methods: {
+    btn(index) {
+      this.selIndex = index;
     }
   }
 };
