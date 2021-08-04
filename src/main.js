@@ -1,16 +1,38 @@
 import Vue from 'vue';
 import App from './App.vue';
-import 'bootstrap/dist/css/bootstrap.css';
-import './assets/fonts/iconfont.css';
+import Find from '@/views/Find';
+import My from '@/views/My';
+import Part from '@/views/Part';
+
+// !#1
+import VueRouter from 'vue-router';
+
+// !#2
+Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
-Vue.directive('focus', {
-  inserted(el) {
-    el.focus();
+const routes = [
+  {
+    path: '/find',
+    component: Find
+  },
+  {
+    path: '/my',
+    component: My
+  },
+  {
+    path: '/part',
+    component: Part
   }
+];
+// !#3
+const router = new VueRouter({
+  routes
 });
 
 new Vue({
-  render: (h) => h(App)
+  render: (h) => h(App),
+  // !#4
+  router
 }).$mount('#app');
