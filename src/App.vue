@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-header />
+    <my-header title="购物车案例" />
     <div class="main">
       <my-goods />
     </div>
