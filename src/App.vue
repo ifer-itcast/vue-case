@@ -18,6 +18,13 @@ export default {
     MyHeader,
     MyGoods,
     MyFooter
+  },
+  created() {
+    this.$axios({
+      url: '/api/cart'
+    }).then(res => {
+      console.log(res);
+    });
   }
 };
 </script>
