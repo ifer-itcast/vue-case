@@ -12,7 +12,14 @@
         <td>{{ row.id }}</td>
         <td>{{ row.goods_name }}</td>
         <td>{{ row.goods_price }}</td>
-        <td>{{ row.tags }}</td>
+        <td>
+          <span
+            v-for="(str, idx) in row.tags"
+            :key="idx"
+            class="mr-2 badge badge-warning"
+            >{{ str }}</span
+          >
+        </td>
         <td>
           <button class="btn btn-danger btn-sm">删除</button>
         </td>
