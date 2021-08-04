@@ -4,7 +4,7 @@
     <div class="main">
       <my-goods v-for="obj in list" :key="obj.id" :gObj="obj" />
     </div>
-    <my-footer />
+    <my-footer @changeAll="allFn" :arr="list" />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       list: []
-    }
+    };
   },
   components: {
     MyHeader,
@@ -27,9 +27,14 @@ export default {
   created() {
     this.$axios({
       url: '/api/cart'
-    }).then(res => {
-      this.list = res.data.list
+    }).then((res) => {
+      this.list = res.data.list;
     });
+  },
+  methods: {
+    allFn(bool) {
+      this.list.forEach((obj) => (obj.goods_state = bool));
+    }
   }
 };
 </script>
