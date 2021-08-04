@@ -2,14 +2,14 @@
   <div>
     <!-- 按钮标题 -->
     <div class="title">
-      <slot name="title"></slot>
+      <h4>毛毛</h4>
       <span class="btn" @click="isShow = !isShow">
         {{ isShow ? '收起' : '展开' }}
       </span>
     </div>
     <!-- 下拉内容 -->
     <div class="container" v-show="isShow">
-      <slot name="content"></slot>
+      <slot :row="defaultObj">{{defaultObj.defaultOne}}</slot>
     </div>
   </div>
 </template>
@@ -18,7 +18,11 @@
 export default {
   data() {
     return {
-      isShow: false
+      isShow: false,
+      defaultObj: {
+        defaultOne: '无名氏',
+        defaultTwo: '小川同学'
+      }
     };
   }
 };

@@ -3,11 +3,8 @@
     <div id="app">
       <h3>案例：折叠面板</h3>
       <panel>
-        <template v-slot:title>
-          <h4>毛毛</h4>
-        </template>
-        <template v-slot:content>
-          <img src="./assets/mm.gif" alt="" />
+        <template v-slot="scope">
+          <p>{{ scope.row.defaultTwo }}</p>
         </template>
       </panel>
     </div>
