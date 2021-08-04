@@ -2,14 +2,14 @@
   <div>
     <!-- 按钮标题 -->
     <div class="title">
-      <h4>芙蓉楼送辛渐</h4>
+      <slot name="title"></slot>
       <span class="btn" @click="isShow = !isShow">
         {{ isShow ? '收起' : '展开' }}
       </span>
     </div>
     <!-- 下拉内容 -->
     <div class="container" v-show="isShow">
-      <slot>默认内容</slot>
+      <slot name="content"></slot>
     </div>
   </div>
 </template>

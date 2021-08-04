@@ -3,12 +3,13 @@
     <div id="app">
       <h3>案例：折叠面板</h3>
       <panel>
-        <img src="./assets/mm.gif" alt="">
+        <template v-slot:title>
+          <h4>毛毛</h4>
+        </template>
+        <template v-slot:content>
+          <img src="./assets/mm.gif" alt="" />
+        </template>
       </panel>
-      <panel>
-        <img src="./assets/a.jpg" alt="">
-      </panel>
-      <panel/>
     </div>
   </div>
 </template>
