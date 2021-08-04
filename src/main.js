@@ -49,6 +49,16 @@ const router = new VueRouter({
   routes
 });
 
+const isLogin = false;
+router.beforeEach((to, from, next) => {
+  if (to.path === '/my' && isLogin === false) {
+    alert('请先登录');
+    next(false);
+  } else {
+    next();
+  }
+});
+
 new Vue({
   render: (h) => h(App),
   // !#4
