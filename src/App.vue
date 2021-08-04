@@ -2,7 +2,7 @@
   <div>
     <my-header title="购物车案例" />
     <div class="main">
-      <my-goods />
+      <my-goods v-for="obj in list" :key="obj.id" :gObj="obj" />
     </div>
     <my-footer />
   </div>
@@ -14,6 +14,11 @@ import MyGoods from './components/MyGoods.vue';
 import MyFooter from './components/MyFooter.vue';
 export default {
   name: 'App',
+  data() {
+    return {
+      list: []
+    }
+  },
   components: {
     MyHeader,
     MyGoods,
@@ -23,7 +28,7 @@ export default {
     this.$axios({
       url: '/api/cart'
     }).then(res => {
-      console.log(res);
+      this.list = res.data.list
     });
   }
 };
