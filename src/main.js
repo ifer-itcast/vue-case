@@ -24,6 +24,10 @@ const routes = [
   {
     path: '/part',
     component: Part
+  },
+  {
+    path: '/part/:username',
+    component: Part
   }
 ];
 // !#3
