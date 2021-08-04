@@ -1,20 +1,30 @@
 <template>
   <div>
-    <use-axios />
+    <my-header />
+    <div class="main">
+      <my-goods />
+    </div>
+    <my-footer />
   </div>
 </template>
 
 <script>
-import UseAxios from './components/UseAxios.vue';
+import MyHeader from './components/MyHeader.vue';
+import MyGoods from './components/MyGoods.vue';
+import MyFooter from './components/MyFooter.vue';
 export default {
   name: 'App',
-  data() {
-    return {
-      show: true
-    };
-  },
   components: {
-    UseAxios
+    MyHeader,
+    MyGoods,
+    MyFooter
   }
 };
 </script>
+
+<style scoped>
+.main {
+  padding-top: 45px;
+  padding-bottom: 50px;
+}
+</style>
