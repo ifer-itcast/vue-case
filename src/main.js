@@ -14,6 +14,10 @@ Vue.config.productionTip = false;
 
 const routes = [
   {
+    path: '/',
+    redirect: '/find'
+  },
+  {
     path: '/find',
     component: Find
   },
