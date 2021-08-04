@@ -1,10 +1,8 @@
 <template>
   <div class="top">
     <div class="footer_wrap">
-      <span @click="btn('/find', 'Find')">发现音乐</span>
-      <span @click="btn('/my', 'My')">我的音乐</span>
-      <span @click="oneBtn">朋友-小传</span>
-      <span @click="twoBtn">朋友-小智</span>
+      <router-link to="/find">发现</router-link>
+      <router-link to="/my">我的</router-link>
     </div>
     <!-- // !#5 -->
     <router-view></router-view>
@@ -13,31 +11,7 @@
 
 <script>
 export default {
-  name: 'App',
-  methods: {
-    btn(path, targetName) {
-      this.$router.push({
-        // path // 根据路由的 path
-        name: targetName // 根据路由的 name
-      });
-    },
-    oneBtn() {
-      this.$router.push({
-        name: 'Part2',
-        params: {
-          username: '小传'
-        }
-      });
-    },
-    twoBtn() {
-      this.$router.push({
-        name: 'Part1',
-        query: {
-          name: '小智'
-        }
-      });
-    }
-  }
+  name: 'App'
 };
 </script>
 
@@ -52,7 +26,7 @@ export default {
   background-color: #333;
   color: #ccc;
 }
-.footer_wrap span {
+.footer_wrap a {
   flex: 1;
   text-decoration: none;
   padding: 20px 0;
@@ -61,13 +35,13 @@ export default {
   color: #ccc;
   border: 1px solid black;
 }
-.footer_wrap span:hover {
+.footer_wrap a:hover {
   background-color: #555;
 }
 .top {
   padding-top: 62px;
 }
-.footer_wrap .router-link-exact-active {
+.footer_wrap .router-link-active {
   color: white;
   background: black;
 }

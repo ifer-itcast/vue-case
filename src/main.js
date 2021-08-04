@@ -2,8 +2,10 @@ import Vue from 'vue';
 import App from './App.vue';
 import Find from '@/views/Find';
 import My from '@/views/My';
-import Part from '@/views/Part';
-import NotFound from '@/views/NotFound'
+import NotFound from '@/views/NotFound';
+import Ranking from '@/views/Ranking';
+import Recommend from '@/views/Recommend';
+import SongList from '@/views/SongList';
 
 // !#1
 import VueRouter from 'vue-router';
@@ -15,28 +17,26 @@ Vue.config.productionTip = false;
 
 const routes = [
   {
-    path: '/',
-    redirect: '/find'
-  },
-  {
     path: '/find',
     component: Find,
-    name: 'Find'
+    children: [
+      {
+        path: 'ranking',
+        component: Ranking
+      },
+      {
+        path: 'recommend',
+        component: Recommend
+      },
+      {
+        path: 'songlist',
+        component: SongList
+      }
+    ]
   },
   {
     path: '/my',
-    component: My,
-    name: 'My'
-  },
-  {
-    path: '/part',
-    component: Part,
-    name: 'Part1'
-  },
-  {
-    path: '/part/:username',
-    component: Part,
-    name: 'Part2'
+    component: My
   },
   {
     path: '*',
