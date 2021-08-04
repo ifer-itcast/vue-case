@@ -20,15 +20,18 @@ const routes = [
   },
   {
     path: '/find',
-    component: Find
+    component: Find,
+    name: 'Find'
   },
   {
     path: '/my',
-    component: My
+    component: My,
+    name: 'My'
   },
   {
     path: '/part',
-    component: Part
+    component: Part,
+    name: 'Part'
   },
   {
     path: '/part/:username',
