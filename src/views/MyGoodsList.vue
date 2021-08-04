@@ -1,6 +1,23 @@
 <template>
   <div>
-    <my-table :arr="list" />
+    <my-table :arr="list">
+      <template #header>
+        <th>#</th>
+        <th>商品名称</th>
+        <th>价格</th>
+        <th>标签</th>
+        <th>操作</th>
+      </template>
+      <template #body="{row}">
+        <td>{{ row.id }}</td>
+        <td>{{ row.goods_name }}</td>
+        <td>{{ row.goods_price }}</td>
+        <td>{{ row.tags }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm">删除</button>
+        </td>
+      </template>
+    </my-table>
   </div>
 </template>
 
