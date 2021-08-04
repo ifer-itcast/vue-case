@@ -9,7 +9,14 @@
 </template>
 
 <script>
+import { Dialog } from 'vant';
 export default {
   name: 'App',
+  created() {
+    Dialog({
+      message: '提示',
+      showCancelButton: true
+    });
+  }
 };
 </script>
