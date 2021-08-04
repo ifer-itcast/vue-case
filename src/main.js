@@ -1,66 +1,10 @@
 import Vue from 'vue';
+import Vant from 'vant';
+import 'vant/lib/index.css';
 import App from './App.vue';
-import Find from '@/views/Find';
-import My from '@/views/My';
-import NotFound from '@/views/NotFound';
-import Ranking from '@/views/Ranking';
-import Recommend from '@/views/Recommend';
-import SongList from '@/views/SongList';
 
-// !#1
-import VueRouter from 'vue-router';
-
-// !#2
-Vue.use(VueRouter);
-
-Vue.config.productionTip = false;
-
-const routes = [
-  {
-    path: '/find',
-    component: Find,
-    children: [
-      {
-        path: 'ranking',
-        component: Ranking
-      },
-      {
-        path: 'recommend',
-        component: Recommend
-      },
-      {
-        path: 'songlist',
-        component: SongList
-      }
-    ]
-  },
-  {
-    path: '/my',
-    component: My
-  },
-  {
-    path: '*',
-    component: NotFound
-  }
-];
-// !#3
-const router = new VueRouter({
-  mode: 'history',
-  routes
-});
-
-const isLogin = false;
-router.beforeEach((to, from, next) => {
-  if (to.path === '/my' && isLogin === false) {
-    alert('请先登录');
-    next(false);
-  } else {
-    next();
-  }
-});
+Vue.use(Vant);
 
 new Vue({
-  render: (h) => h(App),
-  // !#4
-  router
+  render: (h) => h(App)
 }).$mount('#app');
