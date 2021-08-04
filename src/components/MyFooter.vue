@@ -17,7 +17,9 @@
       <span class="price">¥ 0</span>
     </div>
     <!-- 按钮 -->
-    <button type="button" class="footer-btn btn btn-primary">结算 ( 0 )</button>
+    <button type="button" class="footer-btn btn btn-primary">
+      结算 ( {{ allCount }} )
+    </button>
   </div>
 </template>
 
@@ -34,6 +36,14 @@ export default {
       get() {
         return this.arr.every((obj) => obj.goods_state === true);
       }
+    },
+    allCount() {
+      return this.arr.reduce((sum, obj) => {
+        if (obj.goods_state) {
+          sum += obj.goods_count;
+        }
+        return sum;
+      }, 0);
     }
   }
 };
