@@ -21,7 +21,9 @@
           >
         </td>
         <td>
-          <button class="btn btn-danger btn-sm">删除</button>
+          <button @click="removeBtn(row.id)" class="btn btn-danger btn-sm">
+            删除
+          </button>
         </td>
       </template>
     </my-table>
@@ -48,6 +50,12 @@ export default {
     }).then((res) => {
       this.list = res.data.data;
     });
+  },
+  methods: {
+    removeBtn(id) {
+      let index = this.list.findIndex((obj) => obj.id === id);
+      this.list.splice(index, 1);
+    }
   }
 };
 </script>

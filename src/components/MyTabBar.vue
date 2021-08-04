@@ -8,7 +8,7 @@
       :class="{ current: index === selIndex }"
     >
       <!-- 图标 -->
-      <span :class="obj.iconfont"></span>
+      <span class="iconfont" :class="obj.iconText"></span>
       <!-- 文字 -->
       <span>{{ obj.text }}</span>
     </div>
