@@ -31,11 +31,12 @@ const routes = [
   {
     path: '/part',
     component: Part,
-    name: 'Part'
+    name: 'Part1'
   },
   {
     path: '/part/:username',
-    component: Part
+    component: Part,
+    name: 'Part2'
   },
   {
     path: '*',

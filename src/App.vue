@@ -3,7 +3,8 @@
     <div class="footer_wrap">
       <span @click="btn('/find', 'Find')">发现音乐</span>
       <span @click="btn('/my', 'My')">我的音乐</span>
-      <span @click="btn('/part', 'Part')">朋友-小传</span>
+      <span @click="oneBtn">朋友-小传</span>
+      <span @click="twoBtn">朋友-小智</span>
     </div>
     <!-- // !#5 -->
     <router-view></router-view>
@@ -18,6 +19,22 @@ export default {
       this.$router.push({
         // path // 根据路由的 path
         name: targetName // 根据路由的 name
+      });
+    },
+    oneBtn() {
+      this.$router.push({
+        name: 'Part2',
+        params: {
+          username: '小传'
+        }
+      });
+    },
+    twoBtn() {
+      this.$router.push({
+        name: 'Part1',
+        query: {
+          name: '小智'
+        }
       });
     }
   }
