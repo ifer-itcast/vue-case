@@ -8,7 +8,7 @@
       <!-- 搜索关键词容器 -->
       <div class="hot_name_wrap">
         <!-- 每个搜索关键词 -->
-        <span class="hot_item" v-for="(obj, index) in hotArr" :key="index">{{
+        <span class="hot_item" v-for="(obj, index) in hotArr" :key="index" @click="fn(obj.first)">{{
           obj.first
         }}</span>
       </div>
@@ -30,6 +30,11 @@ export default {
   async created() {
     const res = await hotSearchAPI();
     this.hotArr = res.data.result.hots;
+  },
+  methods: {
+    fn(val) {
+      this.value = val;
+    }
   }
 };
 </script>
