@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home';
 import Layout from '@/views/Layout';
 import Search from '@/views/Search';
-// import Play from '@/views/Play';
+import Play from '@/views/Play';
 
 Vue.use(VueRouter);
 
@@ -32,11 +32,11 @@ const routes = [
         }
       }
     ]
-  }
-  /* {
+  },
+  {
     path: '/play',
     component: Play
-  } */
+  }
 ];
 
 const router = new VueRouter({
