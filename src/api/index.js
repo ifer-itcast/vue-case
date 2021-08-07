@@ -1,6 +1,7 @@
 import { recommendMusic, newMusic } from './Home';
-import { hotSearch } from './Search';
+import { hotSearch, searchResultList } from './Search';
 
 export const recommendMusicAPI = recommendMusic;
 export const newMusicAPI = newMusic;
 export const hotSearchAPI = hotSearch;
+export const searchResultListAPI = searchResultList;

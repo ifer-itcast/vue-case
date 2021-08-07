@@ -2,29 +2,50 @@
   <div>
     <van-search shape="round" v-model="value" placeholder="请输入搜索关键词" />
     <!-- 搜索下的容器 -->
-    <div class="search_wrap">
+    <div class="search_wrap" v-if="resultList.length === 0">
       <!-- 标题 -->
       <p class="hot_title">热门搜索</p>
       <!-- 搜索关键词容器 -->
       <div class="hot_name_wrap">
         <!-- 每个搜索关键词 -->
-        <span class="hot_item" v-for="(obj, index) in hotArr" :key="index" @click="fn(obj.first)">{{
-          obj.first
-        }}</span>
+        <span
+          class="hot_item"
+          v-for="(obj, index) in hotArr"
+          :key="index"
+          @click="fn(obj.first)"
+          >{{ obj.first }}</span
+        >
       </div>
+    </div>
+    <!-- 搜索结果 -->
+    <div class="search_wrap" v-else>
+      <!-- 标题 -->
+      <p class="hot_title">最佳匹配</p>
+      <van-cell
+        :title="obj.name"
+        :label="obj.ar[0].name"
+        center
+        v-for="obj in resultList"
+        :key="obj.id"
+      >
+        <template #right-icon>
+          <van-icon name="play-circle-o" size="0.5rem" />
+        </template>
+      </van-cell>
     </div>
   </div>
 </template>
 
 <script>
-import { hotSearchAPI } from '@/api';
+import { hotSearchAPI, searchResultListAPI } from '@/api';
 export default {
   name: 'Search',
 
   data() {
     return {
       value: '',
-      hotArr: []
+      hotArr: [],
+      resultList: []
     };
   },
   async created() {
@@ -32,8 +53,16 @@ export default {
     this.hotArr = res.data.result.hots;
   },
   methods: {
-    fn(val) {
+    async getListFn() {
+      return await searchResultListAPI({
+        keywords: this.value,
+        limit: 20
+      });
+    },
+    async fn(val) {
       this.value = val;
+      const res = await this.getListFn();
+      this.resultList = res.data.result.songs;
     }
   }
 };
