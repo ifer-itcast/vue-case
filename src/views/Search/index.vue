@@ -76,21 +76,40 @@ export default {
       });
     },
     async fn(val) {
+      // !【
+      this.finished = true;
       this.value = val;
       const res = await this.getListFn();
       this.resultList = res.data.result.songs;
+      // !】
+      this.loading = false;
     },
     async inputFn() {
+      // !【
+      this.finished = true;
       if (this.value.length === 0) {
         this.resultList = [];
         return;
       }
       const res = await this.getListFn();
+      if (res.data.result.songs === undefined) {
+        // 没有数据
+        this.resultList = [];
+        this.loading = false;
+        return;
+      }
       this.resultList = res.data.result.songs;
+      // !】
+      this.loading = false;
     },
     async onLoad() {
       this.page++;
       const res = await this.getListFn();
+      if (res.data.result.songs === undefined) {
+        // 没有更多数据了
+        this.finished = true;
+        return;
+      }
       this.resultList = [...this.resultList, ...res.data.result.songs];
       this.loading = false;
     }
