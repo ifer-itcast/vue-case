@@ -1,18 +1,36 @@
 <template>
   <div>
-    Search
+    <van-search shape="round" v-model="value" placeholder="请输入搜索关键词" />
+    <!-- 搜索下的容器 -->
+    <div class="search_wrap">
+      <!-- 标题 -->
+      <p class="hot_title">热门搜索</p>
+      <!-- 搜索关键词容器 -->
+      <div class="hot_name_wrap">
+        <!-- 每个搜索关键词 -->
+        <span class="hot_item" v-for="(obj, index) in hotArr" :key="index">{{
+          obj.first
+        }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { hotSearchAPI } from '@/api';
 export default {
   name: 'Search',
 
   data() {
-    return {};
+    return {
+      value: '',
+      hotArr: []
+    };
   },
-
-  methods: {}
+  async created() {
+    const res = await hotSearchAPI();
+    this.hotArr = res.data.result.hots;
+  }
 };
 </script>
 
