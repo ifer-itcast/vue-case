@@ -1,20 +1,33 @@
 <template>
   <div>
-    Home
+    <p class="title">推荐歌单</p>
+    <van-row gutter="6">
+      <van-col span="8" v-for="obj in reList" :key="obj.id">
+        <van-image width="100%" height="3rem" fit="cover" :src="obj.picUrl" />
+        <p class="song_name">{{ obj.name }}</p>
+      </van-col>
+    </van-row>
   </div>
 </template>
 
 <script>
+import { recommendMusicAPI } from '@/api';
+
 export default {
   name: 'Home',
 
-  data () {
+  data() {
     return {
-    }
+      reList: []
+    };
   },
-
-  methods: {}
-}
+  async created() {
+    const res = await recommendMusicAPI({
+      limit: 6
+    });
+    this.reList = res.data.result;
+  }
+};
 </script>
 
 <style scoped>

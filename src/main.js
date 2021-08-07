@@ -3,18 +3,15 @@ import App from './App.vue';
 import '@/mobile/flexible';
 import '@/styles/reset.css';
 import router from '@/router';
-import { Tabbar, TabbarItem, NavBar } from 'vant';
+import { Tabbar, TabbarItem, NavBar, Col, Row, Image as VanImage } from 'vant';
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(NavBar);
+Vue.use(Col);
+Vue.use(Row);
+Vue.use(VanImage);
 
-import { recommendMusicAPI } from '@/api';
 
-async function fn() {
-  const res = await recommendMusicAPI();
-  console.log(res);
-}
-fn();
 
 new Vue({
   router,
