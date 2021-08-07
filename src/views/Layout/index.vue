@@ -1,8 +1,10 @@
 <template>
   <div>
-    <van-nav-bar :title="activeTitle" />
+    <van-nav-bar :title="activeTitle" fixed />
     <!-- 二级路由出口 -->
-    <router-view></router-view>
+    <div class="main">
+      <router-view></router-view>
+    </div>
     <van-tabbar route>
       <van-tabbar-item icon="home-o" replace to="/layout/home"
         >首页</van-tabbar-item
