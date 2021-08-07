@@ -26,17 +26,24 @@
     <div class="search_wrap" v-else>
       <!-- 标题 -->
       <p class="hot_title">最佳匹配</p>
-      <van-cell
-        :title="obj.name"
-        :label="obj.ar[0].name"
-        center
-        v-for="obj in resultList"
-        :key="obj.id"
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
       >
-        <template #right-icon>
-          <van-icon name="play-circle-o" size="0.5rem" />
-        </template>
-      </van-cell>
+        <van-cell
+          :title="obj.name"
+          :label="obj.ar[0].name"
+          center
+          v-for="obj in resultList"
+          :key="obj.id"
+        >
+          <template #right-icon>
+            <van-icon name="play-circle-o" size="0.5rem" />
+          </template>
+        </van-cell>
+      </van-list>
     </div>
   </div>
 </template>
@@ -50,7 +57,10 @@ export default {
     return {
       value: '',
       hotArr: [],
-      resultList: []
+      resultList: [],
+      loading: false,
+      finished: false,
+      page: 1
     };
   },
   async created() {
@@ -61,7 +71,8 @@ export default {
     async getListFn() {
       return await searchResultListAPI({
         keywords: this.value,
-        limit: 20
+        limit: 20,
+        offset: (this.page - 1) * 20
       });
     },
     async fn(val) {
@@ -76,6 +87,12 @@ export default {
       }
       const res = await this.getListFn();
       this.resultList = res.data.result.songs;
+    },
+    async onLoad() {
+      this.page++;
+      const res = await this.getListFn();
+      this.resultList = [...this.resultList, ...res.data.result.songs];
+      this.loading = false;
     }
   }
 };
