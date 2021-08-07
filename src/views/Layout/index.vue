@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="首页" />
+    <van-nav-bar :title="activeTitle" />
     <!-- 二级路由出口 -->
     <router-view></router-view>
     <van-tabbar v-model="active" route>
@@ -20,11 +20,15 @@ export default {
 
   data() {
     return {
-      active: 0
+      activeTitle: this.$route.meta.title
     };
   },
 
-  methods: {}
+  watch: {
+    $route() {
+      this.activeTitle = this.$route.meta.title;
+    }
+  }
 };
 </script>
 

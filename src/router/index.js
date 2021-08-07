@@ -19,14 +19,20 @@ const routes = [
     children: [
       {
         path: 'home',
-        component: Home
+        component: Home,
+        meta: {
+          title: '首页'
+        }
       },
       {
         path: 'search',
-        component: Search
+        component: Search,
+        meta: {
+          title: '搜索'
+        }
       }
     ]
-  },
+  }
   /* {
     path: '/play',
     component: Play
