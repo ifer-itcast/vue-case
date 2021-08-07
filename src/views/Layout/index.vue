@@ -1,8 +1,11 @@
 <template>
   <div>
-    Layout
     <!-- 二级路由出口 -->
     <router-view></router-view>
+    <van-tabbar v-model="active" route>
+      <van-tabbar-item icon="home-o" replace to="/layout/home">首页</van-tabbar-item>
+      <van-tabbar-item icon="search" replace to="/layout/search">搜索</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
@@ -10,13 +13,14 @@
 export default {
   name: 'Layout',
 
-  data () {
+  data() {
     return {
-    }
+      active: 0
+    };
   },
 
   methods: {}
-}
+};
 </script>
 
 <style scoped>

@@ -3,6 +3,9 @@ import App from './App.vue';
 import '@/mobile/flexible';
 import '@/styles/reset.css';
 import router from '@/router';
+import { Tabbar, TabbarItem } from 'vant';
+Vue.use(Tabbar);
+Vue.use(TabbarItem);
 
 new Vue({
   router,
