@@ -8,6 +8,14 @@ Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(NavBar);
 
+import { recommendMusicAPI } from '@/api';
+
+async function fn() {
+  const res = await recommendMusicAPI();
+  console.log(res);
+}
+fn();
+
 new Vue({
   router,
   render: (h) => h(App)

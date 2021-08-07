@@ -3,7 +3,7 @@
     <van-nav-bar :title="activeTitle" />
     <!-- 二级路由出口 -->
     <router-view></router-view>
-    <van-tabbar v-model="active" route>
+    <van-tabbar route>
       <van-tabbar-item icon="home-o" replace to="/layout/home"
         >首页</van-tabbar-item
       >
