@@ -32,7 +32,7 @@
         finished-text="没有更多了"
         @load="onLoad"
       >
-        <van-cell
+        <!-- <van-cell
           :title="obj.name"
           :label="obj.ar[0].name"
           center
@@ -42,7 +42,13 @@
           <template #right-icon>
             <van-icon name="play-circle-o" size="0.5rem" />
           </template>
-        </van-cell>
+        </van-cell> -->
+        <SongItem
+          v-for="obj in resultList"
+          :key="obj.id"
+          :name="obj.name"
+          :author="obj.ar[0].name"
+        ></SongItem>
       </van-list>
     </div>
   </div>
@@ -50,9 +56,12 @@
 
 <script>
 import { hotSearchAPI, searchResultListAPI } from '@/api';
+import SongItem from '@/components/SongItem.vue';
 export default {
   name: 'Search',
-
+  components: {
+    SongItem
+  },
   data() {
     return {
       value: '',

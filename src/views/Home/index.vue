@@ -8,26 +8,24 @@
       </van-col>
     </van-row>
     <p class="title">最新音乐</p>
-    <van-cell
-      :title="obj.name"
-      :label="obj.song.artists[0].name"
-      center
+    <SongItem
       v-for="obj in songList"
       :key="obj.id"
-    >
-      <template #right-icon>
-        <van-icon name="play-circle-o" size="0.5rem" />
-      </template>
-    </van-cell>
+      :name="obj.name"
+      :author="obj.song.artists[0].name"
+      :id="obj.id"
+    />
   </div>
 </template>
 
 <script>
 import { recommendMusicAPI, newMusicAPI } from '@/api';
-
+import SongItem from '@/components/SongItem.vue';
 export default {
   name: 'Home',
-
+  components: {
+    SongItem
+  },
   data() {
     return {
       reList: [],
@@ -69,8 +67,5 @@ export default {
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
   -webkit-line-clamp: 2; /** 显示的行数 **/
   overflow: hidden; /** 隐藏超出的内容 **/
-}
-.van-cell {
-  border-bottom: 1px solid lightgray;
 }
 </style>
