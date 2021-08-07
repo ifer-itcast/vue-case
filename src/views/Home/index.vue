@@ -7,18 +7,31 @@
         <p class="song_name">{{ obj.name }}</p>
       </van-col>
     </van-row>
+    <p class="title">最新音乐</p>
+    <van-cell
+      :title="obj.name"
+      :label="obj.song.artists[0].name"
+      center
+      v-for="obj in songList"
+      :key="obj.id"
+    >
+      <template #right-icon>
+        <van-icon name="play-circle-o" size="0.5rem" />
+      </template>
+    </van-cell>
   </div>
 </template>
 
 <script>
-import { recommendMusicAPI } from '@/api';
+import { recommendMusicAPI, newMusicAPI } from '@/api';
 
 export default {
   name: 'Home',
 
   data() {
     return {
-      reList: []
+      reList: [],
+      songList: []
     };
   },
   async created() {
@@ -26,6 +39,12 @@ export default {
       limit: 6
     });
     this.reList = res.data.result;
+
+    this.songList = (
+      await newMusicAPI({
+        limit: 20
+      })
+    ).data.result;
   }
 };
 </script>
@@ -50,5 +69,8 @@ export default {
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
   -webkit-line-clamp: 2; /** 显示的行数 **/
   overflow: hidden; /** 隐藏超出的内容 **/
+}
+.van-cell {
+  border-bottom: 1px solid lightgray;
 }
 </style>
