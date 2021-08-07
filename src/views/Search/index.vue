@@ -1,6 +1,11 @@
 <template>
   <div>
-    <van-search shape="round" v-model="value" placeholder="请输入搜索关键词" />
+    <van-search
+      shape="round"
+      v-model="value"
+      placeholder="请输入搜索关键词"
+      @input="inputFn"
+    />
     <!-- 搜索下的容器 -->
     <div class="search_wrap" v-if="resultList.length === 0">
       <!-- 标题 -->
@@ -61,6 +66,14 @@ export default {
     },
     async fn(val) {
       this.value = val;
+      const res = await this.getListFn();
+      this.resultList = res.data.result.songs;
+    },
+    async inputFn() {
+      if (this.value.length === 0) {
+        this.resultList = [];
+        return;
+      }
       const res = await this.getListFn();
       this.resultList = res.data.result.songs;
     }
