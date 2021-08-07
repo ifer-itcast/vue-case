@@ -60,7 +60,8 @@ export default {
       resultList: [],
       loading: false,
       finished: false,
-      page: 1
+      page: 1,
+      timer: null
     };
   },
   async created() {
@@ -84,23 +85,26 @@ export default {
       // !】
       this.loading = false;
     },
-    async inputFn() {
-      // !【
-      this.finished = true;
-      if (this.value.length === 0) {
-        this.resultList = [];
-        return;
-      }
-      const res = await this.getListFn();
-      if (res.data.result.songs === undefined) {
-        // 没有数据
-        this.resultList = [];
+    inputFn() {
+      if (this.timer) clearTimeout(this.timer);
+      this.timer = setTimeout(async () => {
+        // !【
+        this.finished = true;
+        if (this.value.length === 0) {
+          this.resultList = [];
+          return;
+        }
+        const res = await this.getListFn();
+        if (res.data.result.songs === undefined) {
+          // 没有数据
+          this.resultList = [];
+          this.loading = false;
+          return;
+        }
+        this.resultList = res.data.result.songs;
+        // !】
         this.loading = false;
-        return;
-      }
-      this.resultList = res.data.result.songs;
-      // !】
-      this.loading = false;
+      }, 900);
     },
     async onLoad() {
       this.page++;
