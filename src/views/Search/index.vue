@@ -77,6 +77,7 @@ export default {
       });
     },
     async fn(val) {
+      this.page = 1;
       // !【
       this.finished = true;
       this.value = val;
@@ -86,6 +87,7 @@ export default {
       this.loading = false;
     },
     inputFn() {
+      this.page = 1;
       if (this.timer) clearTimeout(this.timer);
       this.timer = setTimeout(async () => {
         // !【
