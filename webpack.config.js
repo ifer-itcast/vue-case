@@ -2,6 +2,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  // mode: 'development', // 默认 production
+  // 不配置 SourceMap，出错的信息是打包好后的代码的行数
+  // 行数、源码
+  // devtool: 'eval-source-map', // 开发
+  // 行数、源码、文件
+  devtool: 'source-map',
+  // 项目上线关闭 SourceMap：直接 npm run build，生成的不包含 SourceMap，安全
+  // 只暴露行数（方便调试），不暴露源码（安全），会生成 SourceMap 文件
+  // devtool: 'nosources-source-map', // 上线
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),

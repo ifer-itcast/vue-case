@@ -16,4 +16,4 @@ theI.className = 'iconfont icon-qq';
 document.body.appendChild(theI);
 
 const fn = () => console.log('箭头函数');
-console.log(fn);
+consol.log(fn);
